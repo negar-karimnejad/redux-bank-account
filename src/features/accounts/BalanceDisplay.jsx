@@ -1,17 +1,20 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
-function BalanceDisplay() {
-  const balance = useSelector((state) => state.account);
-
-  return (
-    <div className="balance-display" type="button">
-      {balance.currency === "USD" && "$"}
-      {balance.currency === "EUR" && "€"}
-      {balance.currency === "GBP" && "£"}
-      {balance.balance}
-    </div>
-  );
+function formatCurrency(value) {
+  return new Intl.NumberFormat("en", {
+    style: "currency",
+    currency: "USD",
+  }).format(value);
 }
 
-export default BalanceDisplay;
+function BalanceDisplay({ balance }) {
+  return <div className="balance-display">{formatCurrency(balance)}</div>;
+}
+
+function mapStateToProps(state) {
+  return {
+    balance: state.account.balance,
+  };
+}
+
+export default connect(mapStateToProps)(BalanceDisplay);

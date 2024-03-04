@@ -6,10 +6,7 @@ import Customer from "./features/customers/Customer";
 
 function App() {
   const customer = useSelector((store) => store.customer);
-  const account = useSelector((store) => store.account);
 
-  console.log(account);
-  console.log(customer);
   return (
     <div className="app">
       <header>

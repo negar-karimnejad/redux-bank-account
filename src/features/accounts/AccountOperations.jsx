@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deposit, payLoan, requestloan, withdraw } from "./accountSlice";
 
 function AccountOperations() {
@@ -9,25 +9,34 @@ function AccountOperations() {
   const [loanPurpose, setLoanPurpose] = useState("");
   const [currency, setCurrency] = useState("USD");
 
+  const { loan, loanPurpose: currentLoanPurpose } = useSelector(
+    (store) => store.account
+  );
   const dispatch = useDispatch();
 
   const handleDeposit = (e) => {
     e.preventDefault();
-    dispatch(deposit(depositValue, currency));
+    if (!depositValue) return;
+    dispatch(deposit(depositValue));
     setDepositValue("");
     setCurrency("USD");
   };
+
   const handleWithdraw = (e) => {
     e.preventDefault();
+    if (!withdrawValue) return;
     dispatch(withdraw(withdrawValue));
     setWithdrawValue("");
   };
+
   const handleRequestloan = (e) => {
     e.preventDefault();
+    if (!loanAmount || !loanPurpose) return;
     dispatch(requestloan(loanAmount, loanPurpose));
     setLoanAmount("");
     setLoanPurpose("");
   };
+
   const handlePayLoan = () => {
     dispatch(payLoan());
   };
@@ -88,12 +97,14 @@ function AccountOperations() {
             <button type="submit">REQUEST LOAN</button>
           </label>
         </form>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <p>Pay back $x</p>
-          <button onClick={handlePayLoan} type="button">
-            PAY LOAN
-          </button>
-        </div>
+        {loan > 0 && (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            Pay back ${loan} ({currentLoanPurpose})
+            <button onClick={handlePayLoan} type="button">
+              PAY LOAN
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
