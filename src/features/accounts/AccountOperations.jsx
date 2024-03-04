@@ -1,55 +1,78 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { deposit, payLoan, requestloan, withdraw } from "./accountSlice";
+
 function AccountOperations() {
-  const [deposit, setDeposit] = useState("");
-  const [withdraw, setWithdraw] = useState("");
+  const [depositValue, setDepositValue] = useState("");
+  const [withdrawValue, setWithdrawValue] = useState("");
   const [loanAmount, setLoanAmount] = useState("");
   const [loanPurpose, setLoanPurpose] = useState("");
+  const [currency, setCurrency] = useState("USD");
 
   const dispatch = useDispatch();
+
+  const handleDeposit = (e) => {
+    e.preventDefault();
+    dispatch(deposit(depositValue, currency));
+    setDepositValue("");
+    setCurrency("USD");
+  };
+  const handleWithdraw = (e) => {
+    e.preventDefault();
+    dispatch(withdraw(withdrawValue));
+    setWithdrawValue("");
+  };
+  const handleRequestloan = (e) => {
+    e.preventDefault();
+    dispatch(requestloan(loanAmount, loanPurpose));
+    setLoanAmount("");
+    setLoanPurpose("");
+  };
+  const handlePayLoan = () => {
+    dispatch(payLoan());
+  };
 
   return (
     <div>
       <h2>Your account operations</h2>
       <div className="bg-gray displaye-flex">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            dispatch(deposit())
-
-          }}
-        >
+        <form onSubmit={handleDeposit}>
           <label htmlFor="deposit">
             Deposit
             <input
-              type="text"
+              type="number"
               id="deposit"
-              value={deposit}
-              onChange={(e) => setDeposit(e.target.value)}
+              value={depositValue}
+              onChange={(e) => setDepositValue(e.target.value)}
             />
-            <select name="" id="">
-              <option value="">US Dollar</option>
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <option value="USD">US Dollar</option>
+              <option value="EUR">Euro</option>
+              <option value="GBP">Biritish Pound</option>
             </select>
             <button type="submit">DEPOSIT</button>
           </label>
         </form>
-        <form>
+        <form onSubmit={handleWithdraw}>
           <label htmlFor="withdraw">
             Withdraw
             <input
-              type="text"
+              type="number"
               id="withdraw"
-              value={withdraw}
-              onChange={(e) => setWithdraw(e.target.value)}
+              value={withdrawValue}
+              onChange={(e) => setWithdrawValue(e.target.value)}
             />
             <button type="submit">WITHDRAW</button>
           </label>
         </form>
-        <form>
+        <form onSubmit={handleRequestloan}>
           <label htmlFor="loanAmount">
             Request Loan
             <input
-              type="text"
+              type="number"
               id="loanAmount"
               placeholder="Loan amount"
               value={loanAmount}
@@ -67,7 +90,9 @@ function AccountOperations() {
         </form>
         <div style={{ display: "flex", alignItems: "center" }}>
           <p>Pay back $x</p>
-          <button type="button">PAY LOAN</button>
+          <button onClick={handlePayLoan} type="button">
+            PAY LOAN
+          </button>
         </div>
       </div>
     </div>

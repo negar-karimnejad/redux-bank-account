@@ -1,9 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function BalanceDisplay() {
+  const balance = useSelector((state) => state.account);
+
   return (
     <div className="balance-display" type="button">
-      $123.1253.000
+      {balance.currency === "USD" && "$"}
+      {balance.currency === "EUR" && "€"}
+      {balance.currency === "GBP" && "£"}
+      {balance.balance}
     </div>
   );
 }
