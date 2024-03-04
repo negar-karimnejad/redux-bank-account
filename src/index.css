@@ -8,22 +8,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 /* CSS styles for React-Redux Bank application */
 
 /* Styles for the whole container */
-div {
-  margin: 1rem;
+.app {
+  margin: 2rem;
+  font-weight: 600;
 }
+
 .bg-gray {
   background-color: #f9f9f9;
   padding: 30px;
   border-radius: 8px;
 }
+
 /* Styles for the header */
 
 h1 {
@@ -48,7 +46,7 @@ label {
 }
 
 input[type="text"] {
-  padding: 4px;
+  padding: 6px;
   border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
@@ -57,18 +55,36 @@ input[type="text"] {
 
 /* Styles for the button */
 button {
-  padding: 4px;
-  background-color: #7d7d7d;
+  padding: 6px;
+  background-color: #dfdfdf;
   border: 2px solid rgb(10, 10, 10);
-  color: #fff;
+  color: #333;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   font-size: 12px;
   margin-left: 5px;
   transition: background-color 0.3s ease;
+  font-weight: 600;
 }
 
 button:hover {
-  background-color: #434343;
+  background-color: #b3b3b3;
+}
+.displaye-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.balance-display {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  background-color: #e8e8e8;
+  color: black;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 10px;
+  font-family: sans-serif;
 }
