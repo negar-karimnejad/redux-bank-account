@@ -44,68 +44,65 @@ function AccountOperations() {
   };
 
   return (
-    <div>
+    <div class="account-operations">
       <h2>Your account operations</h2>
-      <div className="bg-gray displaye-flex">
+      <div class="operations-container">
+        <label htmlFor="deposit">Deposit</label>
         <form onSubmit={handleDeposit}>
-          <label htmlFor="deposit">
-            Deposit
-            <input
-              type="number"
-              id="deposit"
-              value={depositValue}
-              onChange={(e) => setDepositValue(e.target.value)}
-            />
-            <select
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
-            >
-              <option value="USD">US Dollar</option>
-              <option value="EUR">Euro</option>
-              <option value="GBP">Biritish Pound</option>
-            </select>
-            <button type="submit" disabled={isLoading}>
-              {" "}
-              {isLoading ? "CONVERTING..." : "DEPOSIT"} {depositValue}
-            </button>
-          </label>
+          <input
+            type="number"
+            id="deposit"
+            value={depositValue}
+            onChange={(e) => setDepositValue(e.target.value)}
+          />
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+          >
+            <option value="USD">US Dollar</option>
+            <option value="EUR">Euro</option>
+            <option value="GBP">British Pound</option>
+          </select>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "CONVERTING..." : "DEPOSIT"} {depositValue}
+          </button>
         </form>
+        <label htmlFor="withdraw">Withdraw</label>
         <form onSubmit={handleWithdraw}>
-          <label htmlFor="withdraw">
-            Withdraw
-            <input
-              type="number"
-              id="withdraw"
-              value={withdrawValue}
-              onChange={(e) => setWithdrawValue(e.target.value)}
-            />
-            <button type="submit">WITHDRAW</button>
-          </label>
+          <input
+            type="number"
+            id="withdraw"
+            value={withdrawValue}
+            onChange={(e) => setWithdrawValue(e.target.value)}
+          />
+          <button type="submit">WITHDRAW</button>
         </form>
+        <label htmlFor="loanAmount">Request Loan</label>
         <form onSubmit={handleRequestloan}>
-          <label htmlFor="loanAmount">
-            Request Loan
-            <input
-              type="number"
-              id="loanAmount"
-              placeholder="Loan amount"
-              value={loanAmount}
-              onChange={(e) => setLoanAmount(e.target.value)}
-            />
-            <input
-              type="text"
-              id="loanPurpose"
-              placeholder="Loan purpose"
-              value={loanPurpose}
-              onChange={(e) => setLoanPurpose(e.target.value)}
-            />
-            <button type="submit">REQUEST LOAN</button>
-          </label>
+          <input
+            type="number"
+            id="loanAmount"
+            placeholder="Loan amount"
+            value={loanAmount}
+            onChange={(e) => setLoanAmount(e.target.value)}
+          />
+          <input
+            type="text"
+            id="loanPurpose"
+            placeholder="Loan purpose"
+            value={loanPurpose}
+            onChange={(e) => setLoanPurpose(e.target.value)}
+          />
+          <button type="submit">REQUEST LOAN</button>
         </form>
         {loan > 0 && (
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div class="loan-info">
             Pay back ${loan} ({currentLoanPurpose})
-            <button onClick={handlePayLoan} type="button">
+            <button
+              class="pay-loan-button"
+              onClick={handlePayLoan}
+              type="button"
+            >
               PAY LOAN
             </button>
           </div>

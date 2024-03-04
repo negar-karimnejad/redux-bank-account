@@ -17,11 +17,14 @@ function CreateCustomer() {
   }
 
   return (
-    <section>
+    <section className="account-operations">
       <h2>Create new customer</h2>
-      <form className="bg-gray" onClick={createNewCustomer}>
+      <form
+        onClick={createNewCustomer}
+        style={{ flexDirection: "column", alignItems: "start" }}
+      >
         <label htmlFor="fullname">
-          Customer Full name
+          <span style={{ margin: "5px" }}>Customer Full name</span>
           <input
             type="text"
             id="fullname"
@@ -30,7 +33,8 @@ function CreateCustomer() {
           />
         </label>
         <label htmlFor="Nationalid">
-          National ID
+          <span style={{ margin: "5px" }}>National ID</span>
+
           <input
             type="text"
             id="Nationalid"

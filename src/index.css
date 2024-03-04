@@ -1,95 +1,113 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* CSS styles for React-Redux Bank application */
-
-/* Styles for the whole container */
-.app {
-  margin: 2rem;
-  font-weight: 600;
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
-
-.bg-gray {
+/* Container style */
+.account-operations {
+  margin: 20px;
+  padding: 20px;
   background-color: #f9f9f9;
-  padding: 30px;
   border-radius: 8px;
 }
 
-/* Styles for the header */
-
-h1 {
-  color: #333;
-  font-size: 24px;
+/* Form style */
+.account-operations form {
+  width: 100%;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-/* Styles for the form section */
-
-h2 {
-  color: #555;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-/* Styles for form labels and inputs */
-label {
+/* Label style */
+.account-operations label {
   display: block;
-  margin-bottom: 5px;
-  color: #313131;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-input,
-select {
-  padding: 6px;
+/* Input style */
+.account-operations input[type="number"],
+.account-operations input[type="text"],
+.account-operations select {
+  width: 10rem;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 4px;
   box-sizing: border-box;
-  margin: 5px;
 }
 
-/* Styles for the button */
-button {
-  padding: 6px;
-  background-color: #dfdfdf;
-  border: 2px solid rgb(10, 10, 10);
-  color: #333;
+/* Button style */
+.account-operations button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
-  margin-left: 5px;
-  transition: background-color 0.3s ease;
-  font-weight: 600;
+  transition: background-color 0.3s;
 }
-button:disabled {
-  opacity: 50%;
+
+/* Button hover effect */
+.account-operations button:hover {
+  background-color: #0056b3;
 }
-button:hover {
-  background-color: #b3b3b3;
+
+/* Disabled button style */
+.account-operations button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
-.displaye-flex {
+
+/* Flex container style */
+.account-operations .operations-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+/* Loan info style */
+.account-operations .loan-info {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Pay loan button style */
+.account-operations .pay-loan-button {
+  margin-left: 5px;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Pay loan button hover effect */
+.account-operations .pay-loan-button:hover {
+  background-color: #c82333;
 }
 
 .balance-display {
-  min-width: 8rem;
-  text-align: center;
   position: absolute;
   right: 30px;
-  top: 40px;
+  top: 70px;
   background-color: #e8e8e8;
   color: black;
   font-size: 20px;
   font-weight: 900;
   padding: 10px;
+  border-radius: 5px;
   font-family: sans-serif;
 }

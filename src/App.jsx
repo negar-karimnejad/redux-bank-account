@@ -8,7 +8,7 @@ function App() {
   const customer = useSelector((store) => store.customer);
 
   return (
-    <div className="app">
+    <div>
       <header>
         <h1>🏦The React-Redux Bank ⚛</h1>
       </header>
