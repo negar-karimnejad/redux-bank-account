@@ -9,15 +9,17 @@ function AccountOperations() {
   const [loanPurpose, setLoanPurpose] = useState("");
   const [currency, setCurrency] = useState("USD");
 
-  const { loan, loanPurpose: currentLoanPurpose } = useSelector(
-    (store) => store.account
-  );
+  const {
+    loan,
+    loanPurpose: currentLoanPurpose,
+    isLoading,
+  } = useSelector((store) => store.account);
   const dispatch = useDispatch();
 
   const handleDeposit = (e) => {
     e.preventDefault();
     if (!depositValue) return;
-    dispatch(deposit(depositValue));
+    dispatch(deposit(depositValue, currency));
     setDepositValue("");
     setCurrency("USD");
   };
@@ -62,7 +64,10 @@ function AccountOperations() {
               <option value="EUR">Euro</option>
               <option value="GBP">Biritish Pound</option>
             </select>
-            <button type="submit">DEPOSIT</button>
+            <button type="submit" disabled={isLoading}>
+              {" "}
+              {isLoading ? "CONVERTING..." : "DEPOSIT"} {depositValue}
+            </button>
           </label>
         </form>
         <form onSubmit={handleWithdraw}>
